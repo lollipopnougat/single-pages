@@ -69,7 +69,13 @@
             color: #bdcada;
             outline: none;
             transition: all ease-in-out 0.2s;
-            background: #323e44;
+            background-color: #323e44;
+        }
+
+        input.input-box:-internal-autofill-previewed,
+        input.input-box:-internal-autofill-selected {
+            -webkit-text-fill-color: #FFFFFF !important;
+            transition: background-color 5000s ease-in-out 0s !important;
         }
 
         input.input-box::-webkit-input-placeholder {
@@ -144,11 +150,39 @@
         </div>
     </div>
     <script>
+        $('input[name="username"]').on('change', () => {
+            if ($('input[name="username"]').val().length < 3) {
+                alert('用户名过短!');
+                $('input[name="username"]').css('border', '#ff4852 solid 2px');
+            } else {
+                $('input[name="username"]').removeAttr('style');
+            }
+        });
+
+        $('input[name="password"]').on('change', () => {
+            if ($('input[name="password"]').val().length < 4) {
+                alert('密码过短!');
+                $('input[name="password"]').css('border', '#ff4852 solid 2px');
+            } else {
+                $('input[name="password"]').removeAttr('style');
+            }
+        });
+
         $('form').submit(() => {
             let json = {
                 username: $('input[name="username"]').val(),
                 password: $('input[name="password"]').val()
             };
+            if (json.username.length < 3) {
+                alert('用户名过短!');
+                $('input[name="username"]').css('border', '#ff4852 solid 2px');
+                return false;
+            }
+            if (json.password.length < 4) {
+                alert('密码过短!');
+                $('input[name="password"]').css('border', '#ff4852 solid 2px');
+                return false;
+            }
             console.log(json);
             $.ajax({
                 url: '/',
@@ -156,7 +190,7 @@
                 dataType: 'text',
                 type: 'post',
                 success: (data) => {
-                    
+
                 }
             });
             return false;
