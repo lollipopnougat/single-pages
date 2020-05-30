@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
-    <title>登录页示例</title>
+    <title>注册页示例</title>
 </head>
 
 <body>
@@ -46,7 +46,7 @@
         .viewbox {
             display: block;
             width: 350px;
-            height: 280px;
+            height: 360px;
             background: #263238;
             border-radius: 16px;
             /* opacity: 0.75; */
@@ -70,6 +70,22 @@
             outline: none;
             transition: all ease-in-out 0.2s;
             background-color: #323e44;
+        }
+
+        img.captcha {
+            height: 28px;
+            line-height: 1.2;
+            border-radius: 5px;
+            opacity: 0.85;
+        }
+
+        a#cg-captcha {
+            position: relative;
+            top: 10px;
+        }
+
+        input.input-box-captcha {
+            width: 200px;
         }
 
         input.input-box:-internal-autofill-previewed,
@@ -120,30 +136,15 @@
         }
 
         input.submit-btn:hover {
-            background: #a2c076;
+            background: #c3e88d;
         }
 
         input.submit-btn:active {
-            background: #c3e88d;
+            background: #a2c076;
         }
 
         .title-text {
             color: #7abfbb;
-        }
-
-        .iforget {
-            margin-top: 0px;
-            color: #3f4c51;
-            text-decoration: none;
-            transition: all ease-in-out 0.2s;
-        }
-
-        .iforget:hover {
-            color: #7abfbb;
-        }
-
-        .iforget:active {
-            color: #64ffda;
         }
 
         footer span {
@@ -155,12 +156,11 @@
         footer span:hover {
             color: #555555;
         }
-
     </style>
     <div class="line-layout">
         <div class="viewbox">
             <div class="line-layout-st margin-v">
-                <h2 class="title-text">登录</h2>
+                <h2 class="title-text">注册</h2>
                 <form>
                     <div class="line-item">
                         <input type="text" placeholder="账户名" name="username" class="input-box" />
@@ -169,17 +169,25 @@
                         <input type="password" placeholder="密码" name="password" class="input-box" />
                     </div>
                     <div class="line-item">
-                        <input type="submit" value="登录" class="submit-btn" />
+                        <input type="password" placeholder="确认密码" name="repassword" class="input-box" />
+                    </div>
+                    <div class="line-item">
+                        <input type="password" placeholder="验证码" name="repassword"
+                            class=" input-box input-box-captcha" />
+                        <a id="cg-captcha">
+                            <img class="captcha" src="https://cas.baidu.com/?action=image2&appid=12&key=1590823179191" id="captcha"/>
+                        </a>
+                    </div>
+                    <div class="line-item">
+                        <input type="submit" value="注册" class="submit-btn" />
                     </div>
                 </form>
-                <a href="javascript:void(0);" onclick="window.open('./index.html')" class="iforget" title="忘记密码点此重置">忘记密码</a>
             </div>
         </div>
         <footer class="margin-v">
             <span>lnp 2020. MIT LICENSE</span>
         </footer>
     </div>
-    
     <script>
         $('input[name="username"]').on('change', () => {
             if ($('input[name="username"]').val().length < 3) {
@@ -199,19 +207,41 @@
             }
         });
 
+        $('input[name="repassword"]').on('change', () => {
+            if ($('input[name="password"]').val() != $('input[name="repassword"]').val()) {
+                alert('两次密码不一致!');
+                $('input[name="repassword"]').css('border', '#ff4852 solid 2px');
+            } else {
+                $('input[name="repassword"]').removeAttr('style');
+            }
+        });
+
+        $('#cg-captcha').on('click', () => {
+
+            $('#captcha').attr('src','https://cas.baidu.com/?action=image2&appid=12&key=1590823179191');
+        });
+
         $('form').submit(() => {
             let json = {
                 username: $('input[name="username"]').val(),
-                password: $('input[name="password"]').val()
+                password: $('input[name="password"]').val(),
+                repassword: $('input[name="repassword"]').val()
             };
             if (json.username.length < 3) {
                 alert('用户名过短!');
                 $('input[name="username"]').css('border', '#ff4852 solid 2px');
                 return false;
             }
+
             if (json.password.length < 4) {
                 alert('密码过短!');
                 $('input[name="password"]').css('border', '#ff4852 solid 2px');
+                return false;
+            }
+
+            if (json.repassword != json.password) {
+                alert('密码不一致!');
+                $('input[name="repassword"]').css('border', '#ff4852 solid 2px');
                 return false;
             }
             console.log(json);

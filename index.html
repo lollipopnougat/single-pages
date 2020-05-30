@@ -1,42 +1,85 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>目录</title>
 </head>
+
 <body>
     <style>
         body {
             background: #263238;
             text-align: center;
         }
-        h1 {
+
+        h1,
+        h2,
+        h3,
+        p {
             color: #7aa9bf;
         }
+
         a {
-            color: #7abfbb;
+            color: #7e9868;
             text-decoration: none;
             transition: all ease-in-out 0.2s;
         }
+
         a:hover {
-            color: #97d4cf;
+            color: #c3e88d;
         }
+
         a:active {
-            color: #dbf8f6;
+            color: #a2c076;
         }
+
+        .border {
+            border: #7abfbb solid 2px;
+            width: 300px;
+            margin: 0 auto;
+            padding-bottom: 15px;
+            border-radius: 15px;
+        }
+
         /* a:visited {
             color: #4b7c79;
         } */
 
         .view {
-            margin-top: 40px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .foot {
+            position: absolute;
+            bottom: 5px;
+            width: 99%;
+        }
+
+        footer.foot h4 {
+            color: #7aa9bf;
         }
     </style>
-    <h1>页面目录</h1>
+    <h1>开箱即用的网页模板</h1>
     <div class="view">
-       <a href="./login.html">1 登录页面模板</a> 
+        <h3>项目地址</h3>
+        <a href="https://github.com/lollipopnougat/single-pages">https://github.com/lollipopnougat/single-pages</a>
+        <p>欢迎使用，顺便求star或者fork</p>
     </div>
-    
+    <div class="view border">
+        <h3>页面目录</h3>
+        <div class="view">
+            <a href="javascript:void(0);" onclick="window.open('./login.html')">登录页面模板</a>
+        </div>
+        <div class="view">
+            <a href="javascript:void(0);" onclick="window.open('./register.html')">注册页面模板</a>
+        </div>
+    </div>
+    <footer class="foot">
+        <h4>lnp 2020. MIT LICENSE</h4>
+    </footer>
 </body>
+
 </html>
