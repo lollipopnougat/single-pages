@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.staticfile.org/jquery/3.5.1/jquery.min.js"></script>
+    <title>登录页示例</title>
+</head>
+
+<body>
+
+    <style>
+        * {
+            text-align: center;
+        }
+
+        body {
+            /* background: #263238; */
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        .margin-v {
+            margin-top: 8px;
+            margin-bottom: 8px;
+        }
+
+        .line-layout {
+            width: inherit;
+            height: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .line-layout-st {
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+        }
+
+        .viewbox {
+            display: block;
+            width: 350px;
+            height: 260px;
+            background: #263238;
+            border-radius: 16px;
+            /* opacity: 0.75; */
+            box-shadow: rgba(5, 5, 5, 0.5) 5px 3px 10px;
+        }
+
+        .line-item {
+            /* margin-top: 2px; */
+            margin-bottom: 25px;
+        }
+
+        input.input-box {
+            text-align: start;
+            width: 260px;
+            height: 32px;
+            line-height: 1.2;
+            padding-left: 10px;
+            border-radius: 5px;
+            border: #3f4c51 solid 2px;
+            color: #bdcada;
+            outline: none;
+            transition: all ease-in-out 0.2s;
+            background: #323e44;
+        }
+
+        input.input-box::-webkit-input-placeholder {
+            /* WebKit browsers 适配谷歌 */
+            color: #bdcada;
+        }
+
+        input.input-box:-moz-placeholder {
+            /* Mozilla Firefox 4 to 18 适配火狐 */
+            color: #bdcada;
+        }
+
+        input.input-box::-moz-placeholder {
+            /* Mozilla Firefox 19+ 适配火狐 */
+            color: #bdcada;
+        }
+
+        input.input-box:-ms-input-placeholder {
+            /* Internet Explorer 10+  适配ie*/
+            color: #bdcada;
+        }
+
+        input.input-box:focus {
+            border: #64ffda solid 2px;
+        }
+
+        input.submit-btn {
+            /* width: 260px; */
+            width: 150px;
+            height: 32px;
+            line-height: 1.2;
+            border-radius: 5px;
+            /* border: #3f4c51 solid 2px; */
+            outline: none;
+            transition: all ease-in-out 0.2s;
+            background: #7e9868;
+            border: none;
+            color: #ffffff;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        input.submit-btn:hover {
+            background: #c3e88d;
+        }
+
+        input.submit-btn:active {
+            background: #a2c076;
+        }
+
+        .title-text {
+            color: #7abfbb;
+        }
+    </style>
+    <div class="line-layout">
+        <div class="viewbox">
+            <div class="line-layout-st margin-v">
+                <h2 class="title-text">登录</h2>
+                <form>
+                    <div class="line-item">
+                        <input type="text" placeholder="账户名" name="username" class="input-box" />
+                    </div>
+                    <div class="line-item">
+                        <input type="password" placeholder="密码" name="password" class="input-box" />
+                    </div>
+                    <div class="line-item">
+                        <input type="submit" value="登录" class="submit-btn" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('form').submit(() => {
+            let json = {
+                username: $('input[name="username"]').val(),
+                password: $('input[name="password"]').val()
+            };
+            console.log(json);
+            $.ajax({
+                url: '/',
+                data: json,
+                dataType: 'text',
+                type: 'post',
+                success: (data) => {
+                    
+                }
+            });
+            return false;
+        });
+    </script>
+
+</body>
+
+</html>
