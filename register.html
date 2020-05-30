@@ -35,6 +35,25 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            animation:frams 20s infinite;
+        }
+
+        @keyframes frams {
+            0% {
+                background: url("./img/1.jpg") no-repeat center center;
+            }
+
+            33% {
+                background: url("./img/2.jpg") no-repeat center center;
+            }
+
+            66% {
+                background: url("./img/3.jpg") no-repeat center center;
+            }
+
+            100% {
+                background: url("./img/1.jpg") no-repeat center center;
+            }
         }
 
         .line-layout-st {
@@ -43,13 +62,16 @@
             align-items: center;
         }
 
+        
+
         .viewbox {
             display: block;
             width: 350px;
             height: 360px;
             background: #263238;
             border-radius: 16px;
-            /* opacity: 0.75; */
+            opacity: 0.85;
+            backdrop-filter: blur(5px);
             box-shadow: rgba(5, 5, 5, 0.5) 5px 3px 10px;
         }
 
@@ -148,13 +170,13 @@
         }
 
         footer span {
-            color: #eeeeee;
+            color: #aaaaaa;
             transition: all ease-in-out 0.5s;
             cursor: default;
         }
 
         footer span:hover {
-            color: #555555;
+            color: #ffffff;
         }
     </style>
     <div class="line-layout">
